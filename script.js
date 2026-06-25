@@ -16,6 +16,11 @@ finalPolishStyles.rel = 'stylesheet';
 finalPolishStyles.href = 'final-polish.css';
 document.head.appendChild(finalPolishStyles);
 
+const interactionStyles = document.createElement('link');
+interactionStyles.rel = 'stylesheet';
+interactionStyles.href = 'interactions.css';
+document.head.appendChild(interactionStyles);
+
 const formatter = new Intl.NumberFormat('es-CO', {
   style: 'currency',
   currency: 'COP',
@@ -190,9 +195,41 @@ function wireHeartLikes() {
   });
 }
 
+function wireIconCards() {
+  document.querySelectorAll('.feature-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      card.classList.remove('icon-tap');
+      void card.offsetWidth;
+      card.classList.add('icon-tap');
+
+      const burst = document.createElement('span');
+      burst.className = 'icon-burst';
+      burst.textContent = '✦';
+      card.appendChild(burst);
+      setTimeout(() => burst.remove(), 850);
+    });
+  });
+}
+
+function addContactButtons() {
+  const contactSection = document.querySelector('.newsletter > div');
+  if (!contactSection || document.querySelector('.contact-buttons')) return;
+
+  const contactButtons = document.createElement('div');
+  contactButtons.className = 'contact-buttons';
+  contactButtons.innerHTML = `
+    <a class="contact-btn instagram" href="#" aria-label="Instagram Douxell"><span>◎</span> Instagram</a>
+    <a class="contact-btn whatsapp-contact" href="#" aria-label="WhatsApp Douxell"><span>☘</span> WhatsApp</a>
+    <a class="contact-btn email" href="#" aria-label="Correo Douxell"><span>✉</span> Correo</a>
+  `;
+  contactSection.appendChild(contactButtons);
+}
+
 updateChipsPrice();
 renderCart();
 applyPromoCallout();
 updateTestimonials();
 wireCartButtons();
 wireHeartLikes();
+wireIconCards();
+addContactButtons();
