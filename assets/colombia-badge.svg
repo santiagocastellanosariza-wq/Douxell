@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210">
+  <rect width="520" height="210" rx="22" fill="#302824"/>
+  <rect x="0" y="0" width="82" height="105" fill="#FCD116"/>
+  <rect x="0" y="105" width="82" height="53" fill="#003893"/>
+  <rect x="0" y="158" width="82" height="52" fill="#CE1126"/>
+  <text x="138" y="58" font-family="Montserrat, Arial, sans-serif" font-size="36" fill="#fffaf0" letter-spacing="5">Producto</text>
+  <text x="132" y="128" font-family="Georgia, serif" font-size="84" fill="#fffaf0" letter-spacing="2">100%</text>
+  <text x="138" y="175" font-family="Montserrat, Arial, sans-serif" font-size="36" fill="#fffaf0" letter-spacing="5">Colombiano</text>
+</svg>
