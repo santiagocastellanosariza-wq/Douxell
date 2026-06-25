@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Douxell | Cacao natural con alma artesanal</title>
+  <meta name="description" content="Douxell: cacao natural y chips de chocolate con identidad artesanal, elegante y deliciosa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">Envíos deliciosos a toda Colombia · Cacao natural con identidad Douxell</div>
+
+  <header class="site-header" id="inicio">
+    <a href="#inicio" class="brand" aria-label="Douxell inicio">
+      <span class="brand-mark">D</span>
+      <span class="brand-name">Douxell</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#distribuidor">Distribuidores</a>
+      <a href="#recetas">Recetas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="header-actions" aria-label="Acciones rápidas">
+      <button class="icon-btn" type="button" aria-label="Cuenta">♡</button>
+      <button class="icon-btn" type="button" aria-label="Favoritos">☆</button>
+      <button class="icon-btn cart-toggle" type="button" aria-label="Abrir carrito">🛒<span id="cartCount">0</span></button>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-dark">
+      <div class="hero-copy">
+        <p class="eyebrow">Cacao natural · Sabor artesanal</p>
+        <h1>Douxell, cacao natural con alma artesanal</h1>
+        <p class="hero-text">Una experiencia elegante y auténtica para quienes disfrutan el sabor real del cacao y los pequeños momentos que saben especial.</p>
+        <div class="hero-actions">
+          <a href="#productos" class="btn btn-gold">Comprar ahora</a>
+          <a href="#nosotros" class="btn btn-outline">Conocer Douxell</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Composición visual Douxell">
+        <div class="cacao-orbit"></div>
+        <div class="hero-card hero-card-main">
+          <span class="product-label">Douxell</span>
+          <strong>Cacao 250 g</strong>
+          <small>Natural · Intenso · Artesanal</small>
+        </div>
+        <div class="hero-card hero-card-side">
+          <span>Chips</span>
+          <strong>Chocolate</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section" id="productos">
+      <div class="section-heading">
+        <p class="eyebrow">Nuestra selección</p>
+        <h2>Productos Douxell</h2>
+        <p>Por ahora, una línea enfocada solo en nuestros protagonistas: cacao natural y chips de chocolate.</p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card" data-name="Cacao natural Douxell 250 g" data-price="26000">
+          <button class="heart" type="button" aria-label="Agregar a favoritos">♡</button>
+          <div class="product-visual cacao-pack">
+            <span>Douxell</span>
+            <strong>CACAO</strong>
+            <small>250 g</small>
+          </div>
+          <div class="stars">★★★★★ <span>(12)</span></div>
+          <h3>Cacao natural Douxell 250 g</h3>
+          <p>Cacao natural de sabor intenso, ideal para bebidas, postres y recetas especiales.</p>
+          <div class="product-meta">
+            <strong>$26.000</strong>
+            <small>Valor gr: $104</small>
+          </div>
+          <div class="product-actions">
+            <button class="btn-small add-cart" type="button">Agregar</button>
+            <a href="#contacto" class="btn-small secondary">Ver detalles</a>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Chips de chocolate Douxell 250 g" data-price="57200">
+          <button class="heart" type="button" aria-label="Agregar a favoritos">♡</button>
+          <div class="product-visual chips-box">
+            <span>Douxell</span>
+            <strong>CHIPS</strong>
+            <small>Chocolate · 250 g</small>
+          </div>
+          <div class="stars">★★★★★ <span>(9)</span></div>
+          <h3>Chips de chocolate Douxell 250 g</h3>
+          <p>Chips de chocolate con carácter, perfectos para repostería y preparaciones dulces.</p>
+          <div class="product-meta">
+            <strong>$57.200</strong>
+            <small>Valor gr: $229</small>
+          </div>
+          <div class="product-actions">
+            <button class="btn-small add-cart" type="button">Agregar</button>
+            <a href="#contacto" class="btn-small secondary">Ver detalles</a>
+          </div>
+        </article>
+      </div>
+
+      <a href="#contacto" class="btn btn-soft">Ver más</a>
+    </section>
+
+    <section class="feature-strip">
+      <a class="feature-card" href="#contacto">
+        <span class="feature-icon">⌖</span>
+        <h3>Encuéntranos</h3>
+      </a>
+      <a class="feature-card" href="#nosotros">
+        <span class="feature-icon">🍃</span>
+        <h3>Quiénes somos</h3>
+      </a>
+      <a class="feature-card" href="#distribuidor">
+        <span class="feature-icon">🤝</span>
+        <h3>Ser distribuidor</h3>
+      </a>
+    </section>
+
+    <section class="about-section" id="nosotros">
+      <div class="about-image">
+        <div class="leaf-shape"></div>
+        <div class="about-badge">Cacao con identidad</div>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">Douxell</p>
+        <h2>Una marca natural, elegante y cercana</h2>
+        <p>Douxell nace desde el amor por el cacao natural y la intención de crear una experiencia con carácter propio: artesanal, delicada y memorable.</p>
+        <p>Cuidamos los detalles para que cada producto conecte con momentos especiales, recetas deliciosas y una forma más auténtica de disfrutar el chocolate.</p>
+      </div>
+    </section>
+
+    <section class="why-section">
+      <div class="section-heading">
+        <p class="eyebrow">Lo que nos hace únicos</p>
+        <h2>Natural, artesanal y con detalle</h2>
+      </div>
+      <div class="why-grid">
+        <article>
+          <span>01</span>
+          <h3>Cacao protagonista</h3>
+          <p>El cacao es el centro de nuestra identidad y de cada experiencia Douxell.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Sabor con carácter</h3>
+          <p>Productos pensados para recetas, bebidas y momentos cotidianos con un toque premium.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Presentación elegante</h3>
+          <p>Una estética limpia, natural y sofisticada para una marca con personalidad propia.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="distributor-section section-dark" id="distribuidor">
+      <div>
+        <p class="eyebrow">Aliados Douxell</p>
+        <h2>Sé parte de nuestra red de distribuidores</h2>
+        <p>Buscamos aliados que compartan la pasión por el cacao natural y las experiencias de calidad.</p>
+      </div>
+      <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20ser%20distribuidor%20de%20Douxell" class="btn btn-gold" target="_blank" rel="noopener">Quiero ser distribuidor</a>
+    </section>
+
+    <section class="testimonials-section">
+      <div class="section-heading">
+        <p class="eyebrow">Clientes</p>
+        <h2>Opiniones de nuestros clientes</h2>
+      </div>
+      <div class="testimonial-row">
+        <article class="testimonial-card">
+          <div class="mini-product cacao-mini">Cacao</div>
+          <div class="stars">★★★★★</div>
+          <h3>María Fernanda</h3>
+          <p>El cacao tiene un sabor delicioso y natural. Me encantó para preparar bebidas calientes.</p>
+        </article>
+        <article class="testimonial-card">
+          <div class="mini-product chips-mini">Chips</div>
+          <div class="stars">★★★★★</div>
+          <h3>Camila R.</h3>
+          <p>Los chips de chocolate son perfectos para recetas. Se sienten de muy buena calidad.</p>
+        </article>
+        <article class="testimonial-card">
+          <div class="mini-product cacao-mini">Douxell</div>
+          <div class="stars">★★★★★</div>
+          <h3>Laura Gómez</h3>
+          <p>La presentación es muy bonita y el sabor se siente auténtico. Lo volvería a comprar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="recipes-section" id="recetas">
+      <div class="section-heading light">
+        <p class="eyebrow">Inspiración</p>
+        <h2>Recetas con Douxell</h2>
+      </div>
+      <div class="recipe-grid">
+        <article class="recipe-card recipe-one">
+          <h3>Bebida caliente de cacao</h3>
+          <p>Cremosa, aromática y perfecta para disfrutar el cacao Douxell.</p>
+        </article>
+        <article class="recipe-card recipe-two">
+          <h3>Galletas con chips</h3>
+          <p>Una preparación dulce donde los chips Douxell son protagonistas.</p>
+        </article>
+        <article class="recipe-card recipe-three">
+          <h3>Brownie intenso</h3>
+          <p>Chocolate, textura y un toque artesanal para compartir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="newsletter" id="contacto">
+      <div>
+        <p class="eyebrow">Newsletter</p>
+        <h2>Enviaremos correos deliciosos</h2>
+        <p>Recibe novedades, recetas y beneficios especiales de Douxell.</p>
+      </div>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Ingresa tu correo" aria-label="Correo electrónico" required>
+        <button type="submit">Suscribirme</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h2>Douxell</h2>
+      <p>Cacao natural con identidad artesanal.</p>
+    </div>
+    <div>
+      <h3>Navegación</h3>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#distribuidor">Distribuidores</a>
+    </div>
+    <div>
+      <h3>Productos</h3>
+      <a href="#productos">Cacao natural 250 g</a>
+      <a href="#productos">Chips de chocolate 250 g</a>
+    </div>
+    <div>
+      <h3>Contacto</h3>
+      <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20conocer%20los%20productos%20Douxell" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:contacto@douxell.com">contacto@douxell.com</a>
+    </div>
+  </footer>
+
+  <div class="floating-actions">
+    <a class="whatsapp" href="https://wa.me/573000000000?text=Hola%2C%20quiero%20conocer%20los%20productos%20Douxell" target="_blank" rel="noopener" aria-label="WhatsApp">☘</a>
+    <button class="chat cart-toggle" type="button" aria-label="Carrito rápido">🛒<span id="floatCartCount">0</span></button>
+  </div>
+
+  <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras">
+    <button class="close-cart" type="button" aria-label="Cerrar carrito">×</button>
+    <h2>Tu carrito Douxell</h2>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">$0</strong>
+    </div>
+    <a class="btn btn-gold cart-whatsapp" href="https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido%20Douxell" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </aside>
+
+  <div class="modal" id="welcomeModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" type="button" aria-label="Cerrar ventana">×</button>
+      <div class="modal-copy">
+        <p class="eyebrow">Bienvenido a Douxell</p>
+        <h2>Llévate el sabor natural del cacao</h2>
+        <p>Sé el primero en conocer nuestros productos, recetas y beneficios especiales.</p>
+        <strong>10% OFF en tu primera compra</strong>
+        <form class="modal-form">
+          <input type="text" placeholder="Nombre" aria-label="Nombre">
+          <input type="email" placeholder="Correo electrónico" aria-label="Correo electrónico">
+          <div class="birthday-grid">
+            <input type="text" placeholder="DD" aria-label="Día de cumpleaños">
+            <input type="text" placeholder="MM" aria-label="Mes de cumpleaños">
+            <input type="text" placeholder="AAAA" aria-label="Año de cumpleaños">
+          </div>
+          <button type="submit">Recibir beneficios</button>
+        </form>
+      </div>
+      <div class="modal-visual">
+        <span>Douxell</span>
+        <strong>Cacao natural</strong>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
