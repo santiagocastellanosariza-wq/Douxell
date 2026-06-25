@@ -7,7 +7,6 @@ const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const cartCount = document.getElementById('cartCount');
 const floatCartCount = document.getElementById('floatCartCount');
-const addCartButtons = document.querySelectorAll('.add-cart');
 const modal = document.getElementById('welcomeModal');
 const closeModal = document.querySelector('.close-modal');
 const forms = document.querySelectorAll('form');
@@ -161,9 +160,33 @@ function updateChipsPrice() {
 }
 
 function updateTestimonials() {
-  const names = ['cristian sandoval', 'laura S', 'Andrea A.'];
+  const names = ['Cristian Sandoval', 'laura S', 'Andrea A.'];
   document.querySelectorAll('.testimonial-card h3').forEach((name, index) => {
     if (names[index]) name.textContent = names[index];
+  });
+}
+
+function wireHeartLikes() {
+  document.querySelectorAll('.heart').forEach((heart) => {
+    heart.setAttribute('type', 'button');
+    heart.setAttribute('aria-label', 'Me gusta');
+
+    heart.addEventListener('click', () => {
+      const isLiked = heart.classList.toggle('liked');
+      heart.textContent = isLiked ? '♥' : '♡';
+      heart.setAttribute('aria-label', isLiked ? 'Quitar me gusta' : 'Me gusta');
+      heart.classList.remove('heart-pulse');
+      void heart.offsetWidth;
+      heart.classList.add('heart-pulse');
+
+      if (isLiked) {
+        const burst = document.createElement('span');
+        burst.className = 'heart-burst';
+        burst.textContent = '♥';
+        heart.appendChild(burst);
+        setTimeout(() => burst.remove(), 850);
+      }
+    });
   });
 }
 
@@ -172,3 +195,4 @@ renderCart();
 applyPromoCallout();
 updateTestimonials();
 wireCartButtons();
+wireHeartLikes();
