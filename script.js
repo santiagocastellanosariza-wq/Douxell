@@ -43,23 +43,25 @@ closeCart?.addEventListener('click', () => {
   cartPanel.classList.remove('open');
 });
 
-addCartButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.product-card');
-    const name = card.dataset.name;
-    const price = Number(card.dataset.price);
-    const item = cart.find((product) => product.name === name);
+function wireCartButtons() {
+  document.querySelectorAll('.add-cart').forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const name = card.dataset.name;
+      const price = Number(card.dataset.price);
+      const item = cart.find((product) => product.name === name);
 
-    if (item) {
-      item.quantity += 1;
-    } else {
-      cart.push({ name, price, quantity: 1 });
-    }
+      if (item) {
+        item.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
 
-    renderCart();
-    cartPanel.classList.add('open');
+      renderCart();
+      cartPanel.classList.add('open');
+    });
   });
-});
+}
 
 function renderCart() {
   cartItems.innerHTML = '';
@@ -140,9 +142,7 @@ function applyPromoCallout() {
     <div>
       <h3>Desde la raíz del campo, nace la mejor dulzura.</h3>
       <p>Cosecha seleccionada, cuidado en cada etapa y un empaque que preserva lo mejor del cacao. Además, tenemos una promo especial para quienes quieren probar más de Douxell.</p>
-      <div class="promo-badge">Compra 2 unidades por 48 mil</div>
-      <br>
-      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Pedir promo por WhatsApp</a>
+      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Compra 2 unidades por 48 mil por WhatsApp</a>
     </div>
     <div class="shop-callout-visual" aria-label="Chocolate caliente inspirado en los páramos de Santurbán">
       <span class="visual-caption">Chocolate caliente · Santurbán</span>
@@ -150,5 +150,25 @@ function applyPromoCallout() {
   `;
 }
 
+function updateChipsPrice() {
+  const chipsCard = document.querySelector('[data-name="Chips de chocolate Douxell 250 g"]');
+  if (!chipsCard) return;
+  chipsCard.dataset.price = '50000';
+  const price = chipsCard.querySelector('.product-meta strong');
+  const gram = chipsCard.querySelector('.product-meta small');
+  if (price) price.textContent = '$50.000';
+  if (gram) gram.textContent = 'Valor gr: $200';
+}
+
+function updateTestimonials() {
+  const names = ['cristian sandoval', 'laura S', 'Andrea A.'];
+  document.querySelectorAll('.testimonial-card h3').forEach((name, index) => {
+    if (names[index]) name.textContent = names[index];
+  });
+}
+
+updateChipsPrice();
 renderCart();
 applyPromoCallout();
+updateTestimonials();
+wireCartButtons();
