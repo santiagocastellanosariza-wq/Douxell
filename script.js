@@ -12,6 +12,11 @@ const modal = document.getElementById('welcomeModal');
 const closeModal = document.querySelector('.close-modal');
 const forms = document.querySelectorAll('form');
 
+const finalPolishStyles = document.createElement('link');
+finalPolishStyles.rel = 'stylesheet';
+finalPolishStyles.href = 'final-polish.css';
+document.head.appendChild(finalPolishStyles);
+
 const formatter = new Intl.NumberFormat('es-CO', {
   style: 'currency',
   currency: 'COP',
@@ -124,4 +129,26 @@ forms.forEach((form) => {
   });
 });
 
+function applyPromoCallout() {
+  const callout = document.querySelector('.shop-callout');
+  if (!callout) return;
+
+  const promoMessage = 'Hola DOUXELL, quiero aprovechar la promo de 2 unidades por 48 mil. ¿Cómo hago mi pedido?';
+  const promoUrl = `https://wa.me/573028394346?text=${encodeURIComponent(promoMessage)}`;
+
+  callout.innerHTML = `
+    <div>
+      <h3>Desde la raíz del campo, nace la mejor dulzura.</h3>
+      <p>Cosecha seleccionada, cuidado en cada etapa y un empaque que preserva lo mejor del cacao. Además, tenemos una promo especial para quienes quieren probar más de Douxell.</p>
+      <div class="promo-badge">Compra 2 unidades por 48 mil</div>
+      <br>
+      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Pedir promo por WhatsApp</a>
+    </div>
+    <div class="shop-callout-visual" aria-label="Chocolate caliente inspirado en los páramos de Santurbán">
+      <span class="visual-caption">Chocolate caliente · Santurbán</span>
+    </div>
+  `;
+}
+
 renderCart();
+applyPromoCallout();
