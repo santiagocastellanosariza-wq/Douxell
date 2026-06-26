@@ -8,7 +8,9 @@ function loadStylesheet(href) {
 
 loadStylesheet('final-polish.css');
 loadStylesheet('interactions.css');
-loadStylesheet('header-banner.css');
+loadStylesheet('header-banner.css?v=whatsapp-transparente-3');
+
+const whatsappPedidoUrl = 'https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido';
 
 const formatter = new Intl.NumberFormat('es-CO', {
   style: 'currency',
@@ -30,7 +32,7 @@ function replaceHeaderIcons() {
   if (!actions) return;
 
   actions.innerHTML = `
-    <a class="icon-btn header-social whatsapp-head" href="#contacto" aria-label="WhatsApp Douxell" title="WhatsApp">✆</a>
+    <a class="icon-btn header-social whatsapp-head" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wsp-icon.svg" alt="WhatsApp Douxell" class="social-icon-img"></a>
     <a class="icon-btn header-social instagram-head" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
     <button class="icon-btn cart-toggle" type="button" aria-label="Abrir carrito">🛒<span id="cartCount">0</span></button>
     <button class="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
@@ -42,7 +44,7 @@ function replaceFloatingActions() {
   if (!floatingActions) return;
 
   floatingActions.innerHTML = `
-    <a class="floating-social floating-whatsapp" href="#contacto" aria-label="WhatsApp Douxell" title="WhatsApp">✆</a>
+    <a class="floating-social floating-whatsapp" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wsp-icon.svg" alt="WhatsApp Douxell" class="social-icon-img"></a>
     <a class="floating-social floating-instagram" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
   `;
 }
@@ -133,7 +135,7 @@ function renderCart() {
     : 'Hola, quiero conocer los productos Douxell';
 
   const cartWhatsapp = document.querySelector('.cart-whatsapp');
-  if (cartWhatsapp) cartWhatsapp.href = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
+  if (cartWhatsapp) cartWhatsapp.href = `https://wa.me/573028394346?text=${encodeURIComponent(message)}`;
 }
 
 function setTopbarMessage(topbar, banner) {
@@ -259,7 +261,7 @@ function simplifyFeatureStrip() {
   featureStrip.innerHTML = `
     <a class="feature-card" href="#contacto">
       <span class="feature-icon feature-map" aria-hidden="true">⌖</span>
-      <h3>Encuéntranos</h3>
+      <h3>Contacto</h3>
       <p>Canales directos para hablar con Douxell y hacer tus pedidos.</p>
     </a>
     <a class="feature-card" href="#nosotros">
@@ -323,7 +325,7 @@ function addContactButtons() {
   contactButtons.className = 'contact-buttons';
   contactButtons.innerHTML = `
     <a class="contact-btn instagram" href="#" aria-label="Instagram Douxell"><span>◎</span> Instagram</a>
-    <a class="contact-btn whatsapp-contact" href="#" aria-label="WhatsApp Douxell"><span>✆</span> WhatsApp</a>
+    <a class="contact-btn whatsapp-contact" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell"><span>✆</span> WhatsApp</a>
     <a class="contact-btn email" href="#" aria-label="Correo Douxell"><span>✉</span> Correo</a>
   `;
   contactSection.appendChild(contactButtons);
