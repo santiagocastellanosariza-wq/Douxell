@@ -127,6 +127,10 @@ function renderCart() {
   document.querySelector('.cart-whatsapp').href = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
 }
 
+function setTopbarMessage(topbar, banner) {
+  topbar.innerHTML = `<span class="topbar-message">${banner.text}</span>`;
+}
+
 function initTopBannerRotator() {
   const topbar = document.querySelector('.topbar');
   if (!topbar) return;
@@ -140,18 +144,18 @@ function initTopBannerRotator() {
 
   let index = 0;
   topbar.classList.add('rotating-topbar', banners[0].className);
-  topbar.textContent = banners[0].text;
+  setTopbarMessage(topbar, banners[0]);
 
   setInterval(() => {
     topbar.classList.add('is-changing');
     setTimeout(() => {
       topbar.classList.remove(banners[index].className);
       index = (index + 1) % banners.length;
-      topbar.textContent = banners[index].text;
+      setTopbarMessage(topbar, banners[index]);
       topbar.classList.add(banners[index].className);
       topbar.classList.remove('is-changing');
-    }, 280);
-  }, 4300);
+    }, 560);
+  }, 7500);
 }
 
 setTimeout(() => {
