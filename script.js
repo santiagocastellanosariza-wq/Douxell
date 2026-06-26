@@ -1,16 +1,3 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-const cartPanel = document.getElementById('cartPanel');
-const closeCart = document.querySelector('.close-cart');
-const cartToggles = document.querySelectorAll('.cart-toggle');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
-const cartCount = document.getElementById('cartCount');
-const floatCartCount = document.getElementById('floatCartCount');
-const modal = document.getElementById('welcomeModal');
-const closeModal = document.querySelector('.close-modal');
-const forms = document.querySelectorAll('form');
-
 const finalPolishStyles = document.createElement('link');
 finalPolishStyles.rel = 'stylesheet';
 finalPolishStyles.href = 'final-polish.css';
@@ -21,6 +8,35 @@ interactionStyles.rel = 'stylesheet';
 interactionStyles.href = 'interactions.css';
 document.head.appendChild(interactionStyles);
 
+const headerStyles = document.createElement('link');
+headerStyles.rel = 'stylesheet';
+headerStyles.href = 'header-banner.css';
+document.head.appendChild(headerStyles);
+
+function replaceHeaderIcons() {
+  const actions = document.querySelector('.header-actions');
+  if (!actions) return;
+
+  actions.innerHTML = `
+    <a class="icon-btn header-social whatsapp-head" href="#contacto" aria-label="WhatsApp Douxell" title="WhatsApp">✆</a>
+    <a class="icon-btn header-social instagram-head" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
+    <button class="icon-btn cart-toggle" type="button" aria-label="Abrir carrito">🛒<span id="cartCount">0</span></button>
+    <button class="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
+  `;
+}
+
+replaceHeaderIcons();
+
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+const cartPanel = document.getElementById('cartPanel');
+const closeCart = document.querySelector('.close-cart');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const modal = document.getElementById('welcomeModal');
+const closeModal = document.querySelector('.close-modal');
+const forms = document.querySelectorAll('form');
+
 const formatter = new Intl.NumberFormat('es-CO', {
   style: 'currency',
   currency: 'COP',
@@ -28,6 +44,13 @@ const formatter = new Intl.NumberFormat('es-CO', {
 });
 
 const cart = [];
+
+function getCartCountElements() {
+  return {
+    cartCount: document.getElementById('cartCount'),
+    floatCartCount: document.getElementById('floatCartCount'),
+  };
+}
 
 menuToggle?.addEventListener('click', () => {
   mainNav.classList.toggle('open');
@@ -37,11 +60,13 @@ document.querySelectorAll('.main-nav a').forEach((link) => {
   link.addEventListener('click', () => mainNav.classList.remove('open'));
 });
 
-cartToggles.forEach((button) => {
-  button.addEventListener('click', () => {
-    cartPanel.classList.add('open');
+function wireCartToggles() {
+  document.querySelectorAll('.cart-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      cartPanel.classList.add('open');
+    });
   });
-});
+}
 
 closeCart?.addEventListener('click', () => {
   cartPanel.classList.remove('open');
@@ -89,9 +114,10 @@ function renderCart() {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const { cartCount, floatCartCount } = getCartCountElements();
 
-  cartCount.textContent = totalItems;
-  floatCartCount.textContent = totalItems;
+  if (cartCount) cartCount.textContent = totalItems;
+  if (floatCartCount) floatCartCount.textContent = totalItems;
   cartTotal.textContent = formatter.format(total);
 
   const message = cart.length
@@ -99,6 +125,33 @@ function renderCart() {
     : 'Hola, quiero conocer los productos Douxell';
 
   document.querySelector('.cart-whatsapp').href = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
+}
+
+function initTopBannerRotator() {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+
+  const banners = [
+    { text: 'Envíos deliciosos a toda Colombia · Cacao natural con identidad Douxell', className: 'banner-green' },
+    { text: 'Oferta especial · Compra 2 unidades por 48 mil por WhatsApp', className: 'banner-coral' },
+    { text: 'Chocolate que abraza · sabor colombiano para momentos especiales', className: 'banner-cacao' },
+    { text: 'Desde el origen del cacao nace una dulzura con alma artesanal', className: 'banner-gold' },
+  ];
+
+  let index = 0;
+  topbar.classList.add('rotating-topbar', banners[0].className);
+  topbar.textContent = banners[0].text;
+
+  setInterval(() => {
+    topbar.classList.add('is-changing');
+    setTimeout(() => {
+      topbar.classList.remove(banners[index].className);
+      index = (index + 1) % banners.length;
+      topbar.textContent = banners[index].text;
+      topbar.classList.add(banners[index].className);
+      topbar.classList.remove('is-changing');
+    }, 280);
+  }, 4300);
 }
 
 setTimeout(() => {
@@ -219,16 +272,18 @@ function addContactButtons() {
   contactButtons.className = 'contact-buttons';
   contactButtons.innerHTML = `
     <a class="contact-btn instagram" href="#" aria-label="Instagram Douxell"><span>◎</span> Instagram</a>
-    <a class="contact-btn whatsapp-contact" href="#" aria-label="WhatsApp Douxell"><span>☘</span> WhatsApp</a>
+    <a class="contact-btn whatsapp-contact" href="#" aria-label="WhatsApp Douxell"><span>✆</span> WhatsApp</a>
     <a class="contact-btn email" href="#" aria-label="Correo Douxell"><span>✉</span> Correo</a>
   `;
   contactSection.appendChild(contactButtons);
 }
 
+initTopBannerRotator();
 updateChipsPrice();
 renderCart();
 applyPromoCallout();
 updateTestimonials();
+wireCartToggles();
 wireCartButtons();
 wireHeartLikes();
 wireIconCards();
