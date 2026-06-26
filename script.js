@@ -146,7 +146,7 @@ function initTopBannerRotator() {
 
   const banners = [
     { text: 'Envíos deliciosos a toda Colombia · Cacao natural con identidad Douxell', className: 'banner-green' },
-    { text: 'Oferta especial · 2 unidades por $48.000 · puedes combinar cacao y chips', className: 'banner-coral' },
+    { text: 'Oferta especial · 2 unidades por $48.000 · pide en WhatsApp', className: 'banner-coral' },
     { text: 'Chocolate que abraza · sabor colombiano para momentos especiales', className: 'banner-cacao' },
     { text: 'Desde el origen del cacao nace una dulzura con alma artesanal', className: 'banner-gold' },
   ];
@@ -209,7 +209,7 @@ function applyPromoCallout() {
     <div>
       <h3>Desde la raíz del campo, nace la mejor dulzura.</h3>
       <p>Cosecha seleccionada, cuidado en cada etapa y un empaque que preserva lo mejor del cacao. Promo especial: 2 unidades por $48.000, puedes combinar cacao y chips.</p>
-      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Pedir promo por WhatsApp</a>
+      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Pedir promo en WhatsApp</a>
     </div>
     <div class="shop-callout-visual" aria-label="Chocolate caliente inspirado en los páramos de Santurbán">
       <span class="visual-caption">Chocolate caliente · Santurbán</span>
@@ -239,6 +239,40 @@ function updateTestimonials() {
   document.querySelectorAll('.testimonial-card h3').forEach((name, index) => {
     if (names[index]) name.textContent = names[index];
   });
+}
+
+function updateOriginBadge() {
+  const originBadge = document.querySelector('.origin-pillars article:first-child span');
+  if (!originBadge) return;
+
+  originBadge.className = 'origin-mini-flag';
+  originBadge.innerHTML = `
+    <span class="flag-colombia" aria-hidden="true"><i></i><i></i><i></i></span>
+    <small>CO</small>
+  `;
+}
+
+function simplifyFeatureStrip() {
+  const featureStrip = document.querySelector('.feature-strip');
+  if (!featureStrip) return;
+
+  featureStrip.innerHTML = `
+    <a class="feature-card" href="#contacto">
+      <span class="feature-icon feature-map" aria-hidden="true">⌖</span>
+      <h3>Encuéntranos</h3>
+      <p>Canales directos para hablar con Douxell y hacer tus pedidos.</p>
+    </a>
+    <a class="feature-card" href="#nosotros">
+      <span class="feature-icon" aria-hidden="true">🍃</span>
+      <h3>Quiénes somos</h3>
+      <p>Conoce el origen, la esencia y la historia detrás de nuestra marca.</p>
+    </a>
+  `;
+}
+
+function removeDistributorSection() {
+  document.querySelector('#distribuidor')?.remove();
+  document.querySelectorAll('a[href="#distribuidor"]').forEach((link) => link.remove());
 }
 
 function wireHeartLikes() {
@@ -303,6 +337,9 @@ updateProductPricingText();
 renderCart();
 applyPromoCallout();
 updateTestimonials();
+updateOriginBadge();
+simplifyFeatureStrip();
+removeDistributorSection();
 wireCartToggles();
 wireCartButtons();
 wireHeartLikes();
