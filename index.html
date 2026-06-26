@@ -253,15 +253,42 @@
     <div><h2>Douxell</h2><p>Cacao natural con identidad artesanal.</p></div>
     <div><h3>Navegación</h3><a href="#inicio">Inicio</a><a href="#experiencia">Experiencia</a><a href="#productos">Productos</a><a href="#nosotros">Quiénes somos</a><a href="#origen">Origen</a><a href="#distribuidor">Distribuidores</a></div>
     <div><h3>Productos</h3><a href="#productos">Cacao natural 250 g</a><a href="#productos">Chips de chocolate 250 g</a></div>
-    <div><h3>Contacto</h3><a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20conocer%20los%20productos%20Douxell" target="_blank" rel="noopener">WhatsApp</a><a href="#">Instagram</a><a href="mailto:contacto@douxell.com">contacto@douxell.com</a></div>
+    <div><h3>Contacto</h3><a href="https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">WhatsApp</a><a href="#">Instagram</a><a href="mailto:contacto@douxell.com">contacto@douxell.com</a></div>
   </footer>
 
-  <div class="floating-actions"><a class="whatsapp" href="https://wa.me/573000000000?text=Hola%2C%20quiero%20conocer%20los%20productos%20Douxell" target="_blank" rel="noopener" aria-label="WhatsApp">☘</a><button class="chat cart-toggle" type="button" aria-label="Carrito rápido">🛒<span id="floatCartCount">0</span></button></div>
+  <div class="floating-actions"><a class="whatsapp" href="https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/wsp.webp" alt="WhatsApp Douxell" class="social-icon-img"></a><button class="chat cart-toggle" type="button" aria-label="Carrito rápido">🛒<span id="floatCartCount">0</span></button></div>
 
-  <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras"><button class="close-cart" type="button" aria-label="Cerrar carrito">×</button><h2>Tu carrito Douxell</h2><div id="cartItems" class="cart-items"></div><div class="cart-total"><span>Total</span><strong id="cartTotal">$0</strong></div><a class="btn btn-gold cart-whatsapp" href="https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido%20Douxell" target="_blank" rel="noopener">Pedir por WhatsApp</a></aside>
+  <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras"><button class="close-cart" type="button" aria-label="Cerrar carrito">×</button><h2>Tu carrito Douxell</h2><div id="cartItems" class="cart-items"></div><div class="cart-total"><span>Total</span><strong id="cartTotal">$0</strong></div><a class="btn btn-gold cart-whatsapp" href="https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir por WhatsApp</a></aside>
 
   <div class="modal" id="welcomeModal" aria-hidden="true"><div class="modal-content"><button class="close-modal" type="button" aria-label="Cerrar ventana">×</button><div class="modal-copy"><p class="eyebrow">Bienvenido a Douxell</p><h2>Llévate el sabor natural del cacao</h2><p>Sé el primero en conocer nuestros productos, recetas y beneficios especiales.</p><strong>10% OFF en tu primera compra</strong><form class="modal-form"><input type="text" placeholder="Nombre" aria-label="Nombre"><input type="email" placeholder="Correo electrónico" aria-label="Correo electrónico"><div class="birthday-grid"><input type="text" placeholder="DD" aria-label="Día"><input type="text" placeholder="MM" aria-label="Mes"><input type="text" placeholder="AAAA" aria-label="Año"></div><button type="submit">Recibir beneficios</button></form></div><div class="modal-visual"><span>Douxell</span><strong>Cacao natural</strong></div></div></div>
 
   <script src="script.js"></script>
+  <script>
+    (() => {
+      const whatsappUrl = 'https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido';
+      const icon = '<img src="assets/wsp.webp" alt="WhatsApp Douxell" class="social-icon-img">';
+
+      function applyWhatsAppIcon() {
+        document.querySelectorAll('.whatsapp-head, .floating-whatsapp, .floating-actions .whatsapp').forEach((button) => {
+          button.href = whatsappUrl;
+          button.target = '_blank';
+          button.rel = 'noopener';
+          button.innerHTML = icon;
+        });
+
+        document.querySelectorAll('.cart-whatsapp').forEach((button) => {
+          if (!button.href.includes('573028394346')) button.href = whatsappUrl;
+        });
+      }
+
+      const style = document.createElement('style');
+      style.textContent = '.social-icon-img{width:24px;height:24px;object-fit:contain;display:block}.floating-social .social-icon-img,.floating-actions .whatsapp .social-icon-img{width:30px;height:30px}';
+      document.head.appendChild(style);
+
+      applyWhatsAppIcon();
+      setTimeout(applyWhatsAppIcon, 80);
+      setTimeout(applyWhatsAppIcon, 600);
+    })();
+  </script>
 </body>
 </html>
