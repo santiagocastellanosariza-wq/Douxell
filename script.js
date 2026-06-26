@@ -1,17 +1,29 @@
-const finalPolishStyles = document.createElement('link');
-finalPolishStyles.rel = 'stylesheet';
-finalPolishStyles.href = 'final-polish.css';
-document.head.appendChild(finalPolishStyles);
+function loadStylesheet(href) {
+  if (document.querySelector(`link[href="${href}"]`)) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = href;
+  document.head.appendChild(link);
+}
 
-const interactionStyles = document.createElement('link');
-interactionStyles.rel = 'stylesheet';
-interactionStyles.href = 'interactions.css';
-document.head.appendChild(interactionStyles);
+loadStylesheet('final-polish.css');
+loadStylesheet('interactions.css');
+loadStylesheet('header-banner.css');
 
-const headerStyles = document.createElement('link');
-headerStyles.rel = 'stylesheet';
-headerStyles.href = 'header-banner.css';
-document.head.appendChild(headerStyles);
+const formatter = new Intl.NumberFormat('es-CO', {
+  style: 'currency',
+  currency: 'COP',
+  maximumFractionDigits: 0,
+});
+
+const cart = [];
+const cartPanel = document.getElementById('cartPanel');
+const closeCart = document.querySelector('.close-cart');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const modal = document.getElementById('welcomeModal');
+const closeModal = document.querySelector('.close-modal');
+const forms = document.querySelectorAll('form');
 
 function replaceHeaderIcons() {
   const actions = document.querySelector('.header-actions');
@@ -25,25 +37,28 @@ function replaceHeaderIcons() {
   `;
 }
 
-replaceHeaderIcons();
+function replaceFloatingActions() {
+  const floatingActions = document.querySelector('.floating-actions');
+  if (!floatingActions) return;
 
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-const cartPanel = document.getElementById('cartPanel');
-const closeCart = document.querySelector('.close-cart');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
-const modal = document.getElementById('welcomeModal');
-const closeModal = document.querySelector('.close-modal');
-const forms = document.querySelectorAll('form');
+  floatingActions.innerHTML = `
+    <a class="floating-social floating-whatsapp" href="#contacto" aria-label="WhatsApp Douxell" title="WhatsApp">✆</a>
+    <a class="floating-social floating-instagram" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
+  `;
+}
 
-const formatter = new Intl.NumberFormat('es-CO', {
-  style: 'currency',
-  currency: 'COP',
-  maximumFractionDigits: 0,
-});
+function initMenu() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
 
-const cart = [];
+  menuToggle?.addEventListener('click', () => {
+    mainNav?.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.main-nav a').forEach((link) => {
+    link.addEventListener('click', () => mainNav?.classList.remove('open'));
+  });
+}
 
 function getCartCountElements() {
   return {
@@ -52,30 +67,22 @@ function getCartCountElements() {
   };
 }
 
-menuToggle?.addEventListener('click', () => {
-  mainNav.classList.toggle('open');
-});
-
-document.querySelectorAll('.main-nav a').forEach((link) => {
-  link.addEventListener('click', () => mainNav.classList.remove('open'));
-});
-
 function wireCartToggles() {
   document.querySelectorAll('.cart-toggle').forEach((button) => {
-    button.addEventListener('click', () => {
-      cartPanel.classList.add('open');
-    });
+    button.addEventListener('click', () => cartPanel?.classList.add('open'));
   });
 }
 
 closeCart?.addEventListener('click', () => {
-  cartPanel.classList.remove('open');
+  cartPanel?.classList.remove('open');
 });
 
 function wireCartButtons() {
   document.querySelectorAll('.add-cart').forEach((button) => {
     button.addEventListener('click', () => {
       const card = button.closest('.product-card');
+      if (!card) return;
+
       const name = card.dataset.name;
       const price = Number(card.dataset.price);
       const item = cart.find((product) => product.name === name);
@@ -87,12 +94,13 @@ function wireCartButtons() {
       }
 
       renderCart();
-      cartPanel.classList.add('open');
+      cartPanel?.classList.add('open');
     });
   });
 }
 
 function renderCart() {
+  if (!cartItems || !cartTotal) return;
   cartItems.innerHTML = '';
 
   if (!cart.length) {
@@ -124,7 +132,8 @@ function renderCart() {
     ? `Hola, quiero hacer un pedido Douxell: ${cart.map((item) => `${item.quantity} ${item.name}`).join(', ')}. Total aproximado: ${formatter.format(total)}`
     : 'Hola, quiero conocer los productos Douxell';
 
-  document.querySelector('.cart-whatsapp').href = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
+  const cartWhatsapp = document.querySelector('.cart-whatsapp');
+  if (cartWhatsapp) cartWhatsapp.href = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
 }
 
 function setTopbarMessage(topbar, banner) {
@@ -137,7 +146,7 @@ function initTopBannerRotator() {
 
   const banners = [
     { text: 'Envíos deliciosos a toda Colombia · Cacao natural con identidad Douxell', className: 'banner-green' },
-    { text: 'Oferta especial · Compra 2 unidades por 48 mil por WhatsApp', className: 'banner-coral' },
+    { text: 'Oferta especial · 2 unidades por $48.000 · puedes combinar cacao y chips', className: 'banner-coral' },
     { text: 'Chocolate que abraza · sabor colombiano para momentos especiales', className: 'banner-cacao' },
     { text: 'Desde el origen del cacao nace una dulzura con alma artesanal', className: 'banner-gold' },
   ];
@@ -159,7 +168,7 @@ function initTopBannerRotator() {
 }
 
 setTimeout(() => {
-  if (!localStorage.getItem('douxellModalClosed')) {
+  if (modal && !localStorage.getItem('douxellModalClosed')) {
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
@@ -167,6 +176,7 @@ setTimeout(() => {
 }, 900);
 
 function closeWelcomeModal() {
+  if (!modal) return;
   modal.classList.remove('show');
   modal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('no-scroll');
@@ -176,18 +186,14 @@ function closeWelcomeModal() {
 closeModal?.addEventListener('click', closeWelcomeModal);
 
 modal?.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    closeWelcomeModal();
-  }
+  if (event.target === modal) closeWelcomeModal();
 });
 
 forms.forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     alert('Gracias por conectar con Douxell. Muy pronto recibirás nuestras novedades.');
-    if (form.classList.contains('modal-form')) {
-      closeWelcomeModal();
-    }
+    if (form.classList.contains('modal-form')) closeWelcomeModal();
     form.reset();
   });
 });
@@ -196,14 +202,14 @@ function applyPromoCallout() {
   const callout = document.querySelector('.shop-callout');
   if (!callout) return;
 
-  const promoMessage = 'Hola DOUXELL, quiero aprovechar la promo de 2 unidades por 48 mil. ¿Cómo hago mi pedido?';
+  const promoMessage = 'Hola DOUXELL, quiero aprovechar la promo de 2 unidades por $48.000. Quiero combinar cacao y chips. ¿Cómo hago mi pedido?';
   const promoUrl = `https://wa.me/573028394346?text=${encodeURIComponent(promoMessage)}`;
 
   callout.innerHTML = `
     <div>
       <h3>Desde la raíz del campo, nace la mejor dulzura.</h3>
-      <p>Cosecha seleccionada, cuidado en cada etapa y un empaque que preserva lo mejor del cacao. Además, tenemos una promo especial para quienes quieren probar más de Douxell.</p>
-      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Compra 2 unidades por 48 mil por WhatsApp</a>
+      <p>Cosecha seleccionada, cuidado en cada etapa y un empaque que preserva lo mejor del cacao. Promo especial: 2 unidades por $48.000, puedes combinar cacao y chips.</p>
+      <a href="${promoUrl}" class="btn promo-whatsapp" target="_blank" rel="noopener">Pedir promo por WhatsApp</a>
     </div>
     <div class="shop-callout-visual" aria-label="Chocolate caliente inspirado en los páramos de Santurbán">
       <span class="visual-caption">Chocolate caliente · Santurbán</span>
@@ -211,18 +217,25 @@ function applyPromoCallout() {
   `;
 }
 
-function updateChipsPrice() {
+function updateProductPricingText() {
+  const cacaoCard = document.querySelector('[data-name="Cacao natural Douxell 250 g"]');
+  if (cacaoCard) {
+    const gram = cacaoCard.querySelector('.product-meta small');
+    if (gram) gram.textContent = 'Valor g: $104';
+  }
+
   const chipsCard = document.querySelector('[data-name="Chips de chocolate Douxell 250 g"]');
-  if (!chipsCard) return;
-  chipsCard.dataset.price = '50000';
-  const price = chipsCard.querySelector('.product-meta strong');
-  const gram = chipsCard.querySelector('.product-meta small');
-  if (price) price.textContent = '$50.000';
-  if (gram) gram.textContent = 'Valor gr: $200';
+  if (chipsCard) {
+    chipsCard.dataset.price = '50000';
+    const price = chipsCard.querySelector('.product-meta strong');
+    const gram = chipsCard.querySelector('.product-meta small');
+    if (price) price.textContent = '$50.000';
+    if (gram) gram.textContent = 'Valor g: $200';
+  }
 }
 
 function updateTestimonials() {
-  const names = ['Cristian Sandoval', 'laura S', 'Andrea A.'];
+  const names = ['Cristian Sandoval', 'Laura S', 'Andrea A.'];
   document.querySelectorAll('.testimonial-card h3').forEach((name, index) => {
     if (names[index]) name.textContent = names[index];
   });
@@ -282,8 +295,11 @@ function addContactButtons() {
   contactSection.appendChild(contactButtons);
 }
 
+replaceHeaderIcons();
+replaceFloatingActions();
+initMenu();
 initTopBannerRotator();
-updateChipsPrice();
+updateProductPricingText();
 renderCart();
 applyPromoCallout();
 updateTestimonials();
