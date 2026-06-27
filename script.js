@@ -7,8 +7,8 @@ function loadStylesheet(href) {
 }
 
 loadStylesheet('final-polish.css');
-loadStylesheet('interactions.css');
-loadStylesheet('header-banner.css?v=whatsapp-transparente-3');
+loadStylesheet('interactions.css?v=contact-icons-visible-2');
+loadStylesheet('header-banner.css?v=whatsapp-header-30');
 
 const whatsappPedidoUrl = 'https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido';
 
