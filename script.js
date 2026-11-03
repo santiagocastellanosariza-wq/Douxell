@@ -32,7 +32,7 @@ function replaceHeaderIcons() {
   if (!actions) return;
 
   actions.innerHTML = `
-    <a class="icon-btn header-social whatsapp-head" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wsp-icon.svg" alt="WhatsApp Douxell" class="social-icon-img"></a>
+    <a class="icon-btn header-social whatsapp-head" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wspt2.png" alt="WhatsApp Douxell" class="social-icon-img"></a>
     <a class="icon-btn header-social instagram-head" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
     <button class="icon-btn cart-toggle" type="button" aria-label="Abrir carrito">🛒<span id="cartCount">0</span></button>
     <button class="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
@@ -44,8 +44,8 @@ function replaceFloatingActions() {
   if (!floatingActions) return;
 
   floatingActions.innerHTML = `
-    <a class="floating-social floating-whatsapp" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wsp-icon.svg" alt="WhatsApp Douxell" class="social-icon-img"></a>
-    <a class="floating-social floating-instagram" href="#contacto" aria-label="Instagram Douxell" title="Instagram">◎</a>
+    <a class="floating-social floating-whatsapp whatsapp" href="${whatsappPedidoUrl}" target="_blank" rel="noopener" aria-label="WhatsApp Douxell" title="WhatsApp"><img src="assets/wspt2.png" alt="WhatsApp Douxell" class="social-icon-img"></a>
+    <button class="chat cart-toggle" type="button" aria-label="Carrito rápido">🛒<span id="floatCartCount">0</span></button>
   `;
 }
 
