@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="overrides.css" />
+  <link rel="stylesheet" href="final-polish.css" />
+  <link rel="stylesheet" href="interactions.css" />
+  <link rel="stylesheet" href="header-banner.css" />
 </head>
 <body>
   <div class="topbar">Envíos deliciosos a toda Colombia · Cacao natural con identidad Douxell</div>
@@ -263,32 +266,5 @@
   <div class="modal" id="welcomeModal" aria-hidden="true"><div class="modal-content"><button class="close-modal" type="button" aria-label="Cerrar ventana">×</button><div class="modal-copy"><p class="eyebrow">Bienvenido a Douxell</p><h2>Llévate el sabor natural del cacao</h2><p>Sé el primero en conocer nuestros productos, recetas y beneficios especiales.</p><strong>10% OFF en tu primera compra</strong><form class="modal-form"><input type="text" placeholder="Nombre" aria-label="Nombre"><input type="email" placeholder="Correo electrónico" aria-label="Correo electrónico"><div class="birthday-grid"><input type="text" placeholder="DD" aria-label="Día"><input type="text" placeholder="MM" aria-label="Mes"><input type="text" placeholder="AAAA" aria-label="Año"></div><button type="submit">Recibir beneficios</button></form></div><div class="modal-visual"><span>Douxell</span><strong>Cacao natural</strong></div></div></div>
 
   <script src="script.js"></script>
-  <script>
-    (() => {
-      const whatsappUrl = 'https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido';
-      const icon = '<img src="assets/wsp.webp" alt="WhatsApp Douxell" class="social-icon-img">';
-
-      function applyWhatsAppIcon() {
-        document.querySelectorAll('.whatsapp-head, .floating-whatsapp, .floating-actions .whatsapp').forEach((button) => {
-          button.href = whatsappUrl;
-          button.target = '_blank';
-          button.rel = 'noopener';
-          button.innerHTML = icon;
-        });
-
-        document.querySelectorAll('.cart-whatsapp').forEach((button) => {
-          if (!button.href.includes('573028394346')) button.href = whatsappUrl;
-        });
-      }
-
-      const style = document.createElement('style');
-      style.textContent = '.social-icon-img{width:24px;height:24px;object-fit:contain;display:block}.floating-social .social-icon-img,.floating-actions .whatsapp .social-icon-img{width:30px;height:30px}';
-      document.head.appendChild(style);
-
-      applyWhatsAppIcon();
-      setTimeout(applyWhatsAppIcon, 80);
-      setTimeout(applyWhatsAppIcon, 600);
-    })();
-  </script>
 </body>
 </html>
