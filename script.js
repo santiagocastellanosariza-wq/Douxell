@@ -1,15 +1,3 @@
-function loadStylesheet(href) {
-  if (document.querySelector(`link[href="${href}"]`)) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = href;
-  document.head.appendChild(link);
-}
-
-loadStylesheet('final-polish.css');
-loadStylesheet('interactions.css?v=contact-icons-visible-2');
-loadStylesheet('header-banner.css?v=whatsapp-header-30');
-
 const whatsappPedidoUrl = 'https://wa.me/573028394346?text=Hola%20Douxell%2C%20quiero%20hacer%20un%20pedido';
 
 const formatter = new Intl.NumberFormat('es-CO', {
